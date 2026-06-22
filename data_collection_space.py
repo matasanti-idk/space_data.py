@@ -1,53 +1,50 @@
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QGraphicsScene, QFrame
+from PyQt6.QtGui import QFont, QTextBlock, QTextLayout
+#from PyQt6.QtDesigner
 num = 0
+num_lookup = 0
 
-def number_of_times_being_looked_up():
-    global num
-    num += 1
-    print(num)
-    return num
-def commands(command):
-    if command == "/reset":
-        print("resetting all data, count number, and history of looked up data")
-        global num
-        num = 0
-        print(num)
-        return num
+class lookup_menu():
+    def __init__(self):
+        pass
 
 
-def command_list():
-    print('"/reset" to reset all data, count number, and history of looked up data')
+class MainWindow(QMainWindow):
+    def __init__(self):
+        font = QFont("Nunito", 50) 
+        super().__init__()
+        self.setWindowTitle("Space data collection")
+
+        titel_start = QTextLayout()
+        titel_start.text()
+        titel_start.setText("Hello, Welcome to SDC!")
 
 
-def check_question(answer):
-    number_of_times_being_looked_up()
-    if answer == "random_data":
-        look_up_data(answer)
-        return
-    elif answer == "/help":
-        command_list()
-        return
-    elif answer.startswith("/"):
-        commands(answer)
-        return
+        button_start = QPushButton("start lookup") 
+        button_start.pressed.connect(self.close)
+
+        button_close = QPushButton("close")
+        button_close.pressed.connect(self.close)
+
+        
+        self.setFont(font)
+        self.setMenuWidget(button_start)
+        self.setMenuWidget(button_close)
+        self.show()
+        
+app = QApplication([])
+window = MainWindow()
+size = QFrame()
+window.setBaseSize(1200, 900) 
+window.resize(1200, 900)
+app.exec()
 
 
-def look_up_data(answer):
-    print("def look_up_data was executed")
+
+
+
+
     
-while False:
-    class ask_question:
-        def __init__(self, question):
-            self.question = question
-
-        def ask(self):
-            return input(self.question)
-
-    user_prompt = ask_question("What do you want to look up? (type your question, say 'random_data' for rondom information of a star or type /help to check stuff): ")
-    user_answer = user_prompt.ask()
-    check_question(user_answer)
-
-
-
 
 
 
